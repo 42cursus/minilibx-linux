@@ -13,7 +13,7 @@
 
 
 
-void	*mlx_init()
+void	*mlx_init(void)
 {
 	t_xvar	*xvar;
 	

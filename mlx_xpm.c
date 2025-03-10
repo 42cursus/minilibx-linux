@@ -302,44 +302,47 @@ int	mlx_int_file_get_rid_comment(char *ptr, int size)
 				com_end = mlx_int_str_str(ptr+com_begin+2,"\n",size-com_begin-2);
 				memset(ptr+com_begin,' ',com_end+3);
 		}
+	return 0;
 }
 
 
-void	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)
+t_img	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)
 {
-		int	fd;
-		int	size;
-		char	*ptr;
-		t_img	*img;
+	int	fd;
+	int	size;
+	char	*ptr;
+	t_img	*img;
 
-		fd = -1;
-		if ((fd = open(file,O_RDONLY))==-1 || (size = lseek(fd,0,SEEK_END))==-1 ||
-						(ptr = mmap(0,size,PROT_WRITE|PROT_READ,MAP_PRIVATE,fd,0))==
-						(void *)MAP_FAILED)
-		{
-				if (fd>=0)
-						close(fd);
-				return ((void *)0);
-		}
-		mlx_int_file_get_rid_comment(ptr, size);
-		if (img = mlx_int_parse_xpm(xvar,ptr,size,mlx_int_get_line))
-		{
-				*width = img->width;
-				*height = img->height;
-		}
-		munmap(ptr,size);
-		close(fd);
-		return (img);
+	fd = -1;
+	if ((fd = open(file,O_RDONLY))==-1 || (size = lseek(fd,0,SEEK_END))==-1 ||
+					(ptr = mmap(0,size,PROT_WRITE|PROT_READ,MAP_PRIVATE,fd,0))==
+					(void *)MAP_FAILED)
+	{
+			if (fd>=0)
+					close(fd);
+			return ((void *)0);
+	}
+	mlx_int_file_get_rid_comment(ptr, size);
+	img = mlx_int_parse_xpm(xvar, ptr, size, mlx_int_get_line);
+	if (img)
+	{
+		*width = img->width;
+		*height = img->height;
+	}
+	munmap(ptr,size);
+	close(fd);
+	return (img);
 }
 
-void	*mlx_xpm_to_image(t_xvar *xvar,char **xpm_data,int *width,int *height)
+t_img	*mlx_xpm_to_image(t_xvar *xvar,char **xpm_data,int *width,int *height)
 {
-		t_img	*img;
+	t_img	*img;
 
-		if (img = mlx_int_parse_xpm(xvar,xpm_data,0,mlx_int_static_line))
-		{
-				*width = img->width;
-				*height = img->height;
-		}
-		return (img);
+	img = mlx_int_parse_xpm(xvar, xpm_data, 0, mlx_int_static_line);
+	if (img)
+	{
+			*width = img->width;
+			*height = img->height;
+	}
+	return (img);
 }
