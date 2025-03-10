@@ -82,11 +82,11 @@ int mlx_get_color_value(t_xvar *xvar, int color);
 ** dealing with Events
 */
 
-int	mlx_mouse_hook(t_win_list *win, int (*funct)(void), void *param);
-int mlx_key_hook(t_win_list *win, int (*funct)(void), void *param);
-int mlx_expose_hook(t_win_list *win, int (*funct)(void), void *param);
+int	mlx_mouse_hook(t_win_list *win, int (*funct)(unsigned int, int, int, void *), void *param);
+int mlx_key_hook(t_win_list *win, int (*funct)(KeySym, void *), void *param);
+int mlx_expose_hook(t_win_list *win, int (*funct)(void *), void *param);
 
-int mlx_loop_hook(t_xvar *xvar, int (*funct)(void), void *param);
+int mlx_loop_hook(t_xvar *xvar, int (*funct)(void *), void *param);
 int mlx_loop(t_xvar *xvar);
 int mlx_loop_end(t_xvar *xvar);
 
@@ -122,7 +122,7 @@ int		mlx_destroy_display(t_xvar *xvar);
 **    can be hooked. Some macro and defines from X11/X.h are needed here.
 */
 
-int mlx_hook(t_win_list *win, int x_event, int x_mask, int (*funct)(void), void *param);
+int mlx_hook(t_win_list *win, int x_event, int x_mask, int (*funct)(void *), void *param);
 int	mlx_do_key_autorepeatoff(t_xvar *mlx_ptr);
 int	mlx_do_key_autorepeaton(t_xvar *mlx_ptr);
 int	mlx_do_sync(t_xvar *mlx_ptr);

@@ -62,7 +62,7 @@ struct	s_col_name
 typedef struct	s_event_list
 {
 	int		mask;
-	int		(*hook)(void);
+	void	*hook;
 	void	*param;
 }				t_event_list;
 
@@ -107,7 +107,7 @@ typedef struct	s_xvar
 	Colormap	cmap;
 	int			private_cmap;
 	t_win_list	*win_list;
-	int			(*loop_hook)();
+	int			(*loop_hook)(void *);
 	void		*loop_param;
 	int			use_xshm;
 	int			pshm_format;
@@ -133,5 +133,13 @@ int		mlx_int_set_win_event_mask(t_xvar *xvar);
 int		mlx_int_str_str_cote(char *str, char *find, int len);
 int		mlx_int_str_str(char *str, char *find, int len);
 
+int	mlx_int_param_undef(t_xvar *xvar, XEvent *ev, t_win_list *win);
+int	mlx_int_param_KeyPress(t_xvar *xvar, XEvent *ev, t_win_list *win);
+int	mlx_int_param_KeyRelease(t_xvar *xvar, XEvent *ev, t_win_list *win);
+int	mlx_int_param_ButtonPress(t_xvar *xvar, XEvent *ev, t_win_list *win);
+int	mlx_int_param_ButtonRelease(t_xvar *xvar, XEvent *ev, t_win_list *win);
+int	mlx_int_param_MotionNotify(t_xvar *xvar, XEvent *ev, t_win_list *win);
+int	mlx_int_param_Expose(t_xvar *xvar, XEvent *ev, t_win_list *win);
+int	mlx_int_param_generic(t_xvar *xvar, XEvent *ev, t_win_list *win);
 
 #endif

@@ -11,12 +11,10 @@
 
 #include	"mlx_int.h"
 
-
-
-
-int		mlx_expose_hook(t_win_list *win,int (*funct)(),void *param)
+int		mlx_expose_hook(t_win_list *win, int (*funct)(void *),void *param)
 {
-  win->hooks[Expose].hook = funct;
-  win->hooks[Expose].param = param;
-  win->hooks[Expose].mask = ExposureMask;
+	win->hooks[Expose].hook = funct;
+	win->hooks[Expose].param = param;
+	win->hooks[Expose].mask = ExposureMask;
+	return 0;
 }
