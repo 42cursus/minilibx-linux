@@ -144,5 +144,12 @@ int	mlx_int_param_generic(t_xvar *xvar, XEvent *ev, t_win_list *win);
 
 t_img	*mlx_int_new_image(t_xvar *xvar,int width, int height,int format);
 t_img	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format);
+char	**mlx_int_str_to_wordtab(char *str);
+char	*mlx_int_get_line(char *ptr, int *pos, int size);
+char	*mlx_int_static_line(char **xpm_data, int *pos, int size);
+void	*mlx_int_parse_xpm(t_xvar *xvar, void *info, int info_size, char *(*f)());
+
+t_img	*mlx_new_image(t_xvar *xvar, int width, int height);
+t_img	*mlx_new_image2(t_xvar *xvar, int width,int height);
 
 #endif

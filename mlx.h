@@ -61,7 +61,7 @@ int	mlx_pixel_put(t_xvar *mlx_ptr, t_win_list *win_ptr, int x, int y, int color)
 ** Image stuff
 */
 
-t_img	*mlx_new_image(t_xvar *mlx_ptr, int width, int height);
+t_img	*mlx_new_image(t_xvar *xvar, int width, int height);
 t_img	*mlx_new_image2(t_xvar *xvar, int width,int height);
 
 /*
