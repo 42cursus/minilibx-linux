@@ -142,4 +142,7 @@ int	mlx_int_param_MotionNotify(t_xvar *xvar, XEvent *ev, t_win_list *win);
 int	mlx_int_param_Expose(t_xvar *xvar, XEvent *ev, t_win_list *win);
 int	mlx_int_param_generic(t_xvar *xvar, XEvent *ev, t_win_list *win);
 
+t_img	*mlx_int_new_image(t_xvar *xvar,int width, int height,int format);
+t_img	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format);
+
 #endif

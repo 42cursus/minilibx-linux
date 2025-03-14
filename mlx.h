@@ -62,6 +62,8 @@ int	mlx_pixel_put(t_xvar *mlx_ptr, t_win_list *win_ptr, int x, int y, int color)
 */
 
 t_img	*mlx_new_image(t_xvar *mlx_ptr, int width, int height);
+t_img	*mlx_new_image2(t_xvar *xvar, int width,int height);
+
 /*
 **  return void *0 if failed
 **  obsolete : image2 data is stored using bit planes
